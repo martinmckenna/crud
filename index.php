@@ -30,31 +30,6 @@ if(isset($_POST['delete_submit'])){
 	</form>
 </div>
 
-<h1>Create Page</h1>
-<div class = "form">
-	<form method="post" name = "add_page">
-		<input type="text" name="page" maxlength="30">
-		<input type="submit" name="page_submit">
-	</form>
-</div>
-
-<!-- <h1>Delete Word</h1>
-<div class = "form">
-	<form method="post" name = "delete_form">
-		<select name = "deleted_word">
-		<?php  
-			// $each_word = get_column_from_table('word', 'words');
-			// while($row = mysqli_fetch_assoc($each_word)){ //loop through the rows
-			// 	echo "<option>";
-			// 	echo $row["word"];
-			// 	echo "</option>";
-			// }	
-		?>
-		</select>
-		<input type="submit" name="delete_submit" value = "Delete">
-	</form>
-</div> -->
-
 <div class = "word-list">
 	<?php get_column_from_table('word', 'words'); ?>
 </div>

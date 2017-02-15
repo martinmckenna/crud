@@ -30,13 +30,6 @@ function add_word($word){
 	mysqli_fetch_row(result);
 }
 
-function add_page($word){
-	global $connection;
-	$cleaned_word = clean("$word");
-	$query = "INSERT INTO pages (page) VALUES ('$cleaned_word')";
-	$result = mysqli_query($connection, $query);
-}
-
 //get entire columnn from any table
 //The READ part of the app
 function get_column_from_table($column, $table){
@@ -55,13 +48,31 @@ function get_column_from_table($column, $table){
 	
 }
 
-//wasn't fleshed out well. Need to rewatch lynda tutorial and redo this and make an update function as well.
+//Delete function. Grabs the id from the url then compares it to the id in the row 
+//and deletes the appropriate row
 function delete_word(){
 	global $connection;
 	$url_id = $_GET['id'];
 	$query = "DELETE FROM words WHERE id = '".$url_id."'";
 	if(mysqli_query($connection, $query)){
 		echo "Deleted!";
+		echo ("<SCRIPT LANGUAGE='JavaScript'>
+    window.alert('Succesfully Updated')
+    window.location.href='index.php';
+    </SCRIPT>");
+	}
+	else{
+		echo "ERROR";
+	}
+}
+
+//Update function. Sets word to new word based on the id in the url.
+function update_word($word){
+	global $connection;
+	$url_id = $_GET['id'];
+	$query = "UPDATE words SET word=('$word') WHERE id = '".$url_id."'";
+	if(mysqli_query($connection, $query)){
+		echo "Updated!";
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('Succesfully Updated')
     window.location.href='index.php';
