@@ -53,13 +53,19 @@ function get_column_from_table($column, $table){
 function delete_word(){
 	global $connection;
 	$url_id = $_GET['id'];
-	$query = "DELETE FROM words WHERE id = '".$url_id."'";
-	if(mysqli_query($connection, $query)){
+	if ($executed = mysqli_prepare($connection, 'DELETE FROM words WHERE id =?')){
+		//binds parameters for markers (i=integer)
+		mysqli_stmt_bind_param($executed, "i", $url_id);
+		//execute the query
+		mysqli_stmt_execute($executed);
 		echo "Deleted!";
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('Succesfully Updated')
     window.location.href='index.php';
     </SCRIPT>");
+		//close statement
+		mysqli_stmt_close($executed);
+		
 	}
 	else{
 		echo "ERROR";
@@ -70,13 +76,19 @@ function delete_word(){
 function update_word($word){
 	global $connection;
 	$url_id = $_GET['id'];
-	$query = "UPDATE words SET word=('$word') WHERE id = '".$url_id."'";
-	if(mysqli_query($connection, $query)){
-		echo "Updated!";
+	if ($executed = mysqli_prepare($connection, 'UPDATE words SET word=('$word') WHERE id =?')){
+		//binds parameters for markers (i=integer)
+		mysqli_stmt_bind_param($executed, "i", $url_id);
+		//execute the query
+		mysqli_stmt_execute($executed);
+		echo "Deleted!";
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('Succesfully Updated')
     window.location.href='index.php';
     </SCRIPT>");
+		//close statement
+		mysqli_stmt_close($executed);
+		
 	}
 	else{
 		echo "ERROR";
