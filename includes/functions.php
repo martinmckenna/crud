@@ -1,5 +1,3 @@
-<link href="https://fonts.googleapis.com/css?family=Lora|Raleway" rel="stylesheet">
-
 <?php
 include('includes/connection/databaseconnect.php');
 
@@ -103,15 +101,20 @@ function search_word($word){
 	$cleaned_word = clean("$word");
 	$query = "SELECT * FROM words WHERE word=('$cleaned_word')";
 	$result = mysqli_query($connection, $query);
-	while($row = mysqli_fetch_assoc($result)){ //loop through the rows
-		$output = '<div class = "entry">';
-		$output .= "<a href = \"word.php?id=";
-		$output .= urlencode($row["id"]);
-		$output .= "\">";
-		$output .= $row["word"];
-		$output .= "</a>";
-		$output .= '</div>';
-		echo $output;
+	if(mysqli_num_rows($result)>0){
+		while($row = mysqli_fetch_assoc($result)){ //loop through the rows
+			$output = '<div class = "entry">';
+			$output .= "<a href = \"word.php?id=";
+			$output .= urlencode($row["id"]);
+			$output .= "\">";
+			$output .= $row["word"];
+			$output .= "</a>";
+			$output .= '</div>';
+			echo $output;
+		}
+	}
+	else{
+		echo "<div id = 'notfound'>Looks like this word doesn't exist yet, idiot<br/><a href='index.php'>Go back</a></div>";
 	}
 }
 

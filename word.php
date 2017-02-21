@@ -1,5 +1,4 @@
-<?php require_once('includes/connection/databaseconnect.php'); ?>
-<?php require_once('includes/functions.php'); ?>
+<?php require_once('includes/header.php'); ?>
 <?php
 //if the form is submitted, run the add_word function
 if(isset($_POST['delete'])){
@@ -10,14 +9,7 @@ if(isset($_POST['submit_update'])){
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Word Page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="styles/style.css" rel="stylesheet">
-    </head>
+
     <body>
         <?php
             print_info();
@@ -30,4 +22,4 @@ if(isset($_POST['submit_update'])){
             <input type="submit" name="submit_update" value="Update"/>
         </form>
     </body>
-</html>
+<?php require_once('includes/footer.php'); ?>

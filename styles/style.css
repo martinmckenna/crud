@@ -59,9 +59,14 @@ h5 {
     display: inline-block;
     width: 100%;
     color: #fe57a1;
-    padding: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
 }
 
 .form {
     margin: 20px;
+}
+
+#notfound {
+    text-align: center;
 }
