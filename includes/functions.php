@@ -76,18 +76,18 @@ function delete_word(){
 function update_word($word){
 	global $connection;
 	$url_id = $_GET['id'];
-	if ($executed = mysqli_prepare($connection, 'UPDATE words SET word=('$word') WHERE id =?')){
+	if ($updated = mysqli_prepare($connection, "UPDATE words SET word=('$word') WHERE id = ?")){
 		//binds parameters for markers (i=integer)
-		mysqli_stmt_bind_param($executed, "i", $url_id);
+		mysqli_stmt_bind_param($updated, "i", $url_id);
 		//execute the query
-		mysqli_stmt_execute($executed);
+		mysqli_stmt_execute($updated);
 		echo "Deleted!";
 		echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('Succesfully Updated')
     window.location.href='index.php';
     </SCRIPT>");
 		//close statement
-		mysqli_stmt_close($executed);
+		mysqli_stmt_close($updated);
 		
 	}
 	else{
