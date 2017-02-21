@@ -1,5 +1,65 @@
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: lightcyan;
+    font-family: 'Lora', serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Raleway', sans-serif;
+}
+
+.banner {
+    width: 100%;
+    background-color: green;
+    color: #fff;
+    display: block;
+    padding: 1em;
+    text-align: center;
+    font-size: 1.3em;
+}
+
 .delete_form {
     display: inline;
+}
+
+.entry {
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    background-color: whitesmoke;
+    -webkit-box-shadow: 0 10px 15px 0 #949494;
+    box-shadow: 0 10px 15px 0 #949494;
+}
+
+.entry:hover {
+    -webkit-transition: all .15s ease-in;
+    -moz-transition: all .15s ease-in;
+    -ms-transition: all .15s ease-in;
+    -o-transition: all .15s ease-in;
+    transition: all .15s ease-in;
+    -moz-transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    -o-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+}
+
+.entry a {
+    display: inline-block;
+    width: 100%;
+    color: #fe57a1;
+    padding: 1em;
 }
 
 .form {

@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css?family=Lora|Raleway" rel="stylesheet">
+
 <?php
 include('includes/connection/databaseconnect.php');
 
@@ -34,16 +36,17 @@ function add_word($word){
 //The READ part of the app
 function get_column_from_table($column, $table){
 	global $connection;
-	$query = "SELECT * FROM $table";
+	$query = "SELECT * FROM $table ORDER BY word ASC";
 	$result = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_assoc($result)){ //loop through the rows
-		$output = "<a href = \"word.php?id=";
+		$output = '<div class = "entry">';
+		$output .= "<a href = \"word.php?id=";
 		$output .= urlencode($row["id"]);
 		$output .= "\">";
 		$output .= $row["word"];
 		$output .= "</a>";
+		$output .= '</div>';
 		echo $output;
-		echo "</br>";
 	}
 	
 }
@@ -57,18 +60,18 @@ function delete_word(){
 		//binds parameters for markers (i=integer)
 		mysqli_stmt_bind_param($executed, "i", $url_id);
 		//execute the query
-		mysqli_stmt_execute($executed);
-		echo "Deleted!";
-		echo ("<SCRIPT LANGUAGE='JavaScript'>
-    window.alert('Succesfully Updated')
-    window.location.href='index.php';
-    </SCRIPT>");
+		if(mysqli_stmt_execute($executed)){
+		header("Refresh:1; url=index.php");
+		echo '<div class = "banner">';
+		echo "Entry Deleted! Redirecting back to the homepage...";
+		echo '</div>';
+		}
+		else{
+			echo "ERROR";
+		}
 		//close statement
 		mysqli_stmt_close($executed);
 		
-	}
-	else{
-		echo "ERROR";
 	}
 }
 
@@ -80,18 +83,35 @@ function update_word($word){
 		//binds parameters for markers (i=integer)
 		mysqli_stmt_bind_param($updated, "i", $url_id);
 		//execute the query
-		mysqli_stmt_execute($updated);
-		echo "Deleted!";
-		echo ("<SCRIPT LANGUAGE='JavaScript'>
-    window.alert('Succesfully Updated')
-    window.location.href='index.php';
-    </SCRIPT>");
+		if(mysqli_stmt_execute($updated)){
+		header("Refresh:1; url=index.php");
+		echo '<div class = "banner">';
+		echo "Entry Updated! Redirecting back to the homepage...";
+		echo '</div>';
+		}
+		else{
+			echo "ERROR";
+		}
 		//close statement
 		mysqli_stmt_close($updated);
 		
 	}
-	else{
-		echo "ERROR";
+}
+
+function search_word($word){
+	global $connection;
+	$cleaned_word = clean("$word");
+	$query = "SELECT * FROM words WHERE word=('$cleaned_word')";
+	$result = mysqli_query($connection, $query);
+	while($row = mysqli_fetch_assoc($result)){ //loop through the rows
+		$output = '<div class = "entry">';
+		$output .= "<a href = \"word.php?id=";
+		$output .= urlencode($row["id"]);
+		$output .= "\">";
+		$output .= $row["word"];
+		$output .= "</a>";
+		$output .= '</div>';
+		echo $output;
 	}
 }
 

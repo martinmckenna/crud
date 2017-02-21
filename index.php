@@ -29,9 +29,23 @@ if(isset($_POST['delete_submit'])){
 		<input type="submit" name="submit">
 	</form>
 </div>
+<h1>Search</h1>
+<div class = "form">
+	<form method="post" name = "search">
+		<input type="text" name="search-word" maxlength="30">
+		<input type="submit" name="search-submit">
+	</form>
+</div>
 
 <div class = "word-list">
-	<?php get_column_from_table('word', 'words'); ?>
+	<?php 
+	//if the search form is submitted, run the search_word function
+	if(isset($_POST['search-submit'])){
+		search_word($_POST['search-word']);
+	}
+	else{
+		get_column_from_table('word', 'words');
+	} ?>
 </div>
 
 
