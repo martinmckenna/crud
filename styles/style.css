@@ -7,6 +7,7 @@ body {
     padding: 0;
     background-color: lightcyan;
     font-family: 'Lora', serif;
+    width: 100%;
 }
 
 h1,
@@ -18,13 +19,13 @@ h5 {
 }
 
 .banner {
-    width: 100%;
     background-color: green;
     color: #fff;
     display: block;
     padding: 1em;
     text-align: center;
     font-size: 1.3em;
+    margin-top: 1em;
 }
 
 .delete_form {
@@ -65,6 +66,34 @@ h5 {
 
 .form {
     margin: 20px;
+    text-align: center;
+}
+
+.form input {
+    font-size: 1.2em;
+}
+
+.form label {
+    font-size: 1.5em;
+}
+
+.form button {
+    background: none;
+    border: none;
+    position: relative;
+    top: 3px;
+}
+
+#logo {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+}
+
+#logo>a {
+    color: black;
+    border-bottom: 1px dotted #1e1e1e;
 }
 
 #notfound {

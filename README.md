@@ -1,11 +1,11 @@
-Small side project to stay frosty with PHP
+CRUD app to practice PHP
 
 ## TODO
 * Form validation
-* Clean up styling.
-* Clean messaging when updating and deleting
+* ONGOING -- Clean up styling.
+* ONGOING -- Clean messaging when updating and deleting
 * DONE -- Search function 
-* Prevent duplicate entries
-* add logo to go home
+* DONE -- Prevent duplicate entries
+* DONE -- add logo to go home
 * hide/show create form with javascript
 

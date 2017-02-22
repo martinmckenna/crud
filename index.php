@@ -1,26 +1,40 @@
 <?php require_once('includes/header.php'); ?>
-<?php
-//if the form is submitted, run the add_word function
-if(isset($_POST['submit'])){
-	add_word($_POST["word"]);
-}
-?>
 
 <body>
-<h1>Create Word</h1>
+<div class = "form" id ="searchform">
+	<form method="post" name = "search">
+		<input type="text" name="search-word" placeholder="search" maxlength="30">
+		<button type="submit" name="search-submit" id="search">
+			<i class="fa fa-search fa-2x" aria-hidden="true"></i>
+		</button>
+	</form>
+</div>
 <div class = "form">
 	<form method="post" name = "add_word">
-		<input type="text" name="word" maxlength="30">
-		<input type="submit" name="submit">
+		<input type="text" name="word" placeholder="new word" maxlength="30">
+		<button type="submit" name="submit">
+		<i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+		</button>
 	</form>
+	<?php
+	//if the form is submitted, run the add_word function
+	if(isset($_POST['submit'])){
+		$trimmed = trim($_POST["word"]);
+		if(empty($trimmed)){
+			echo "Please enter something!";
+		}
+		else{
+			if(!check_for_duplicate($_POST["word"])){
+				add_word($_POST["word"]);
+			}
+			else{
+				echo "This word already exists!";
+			}
+		}
+	}
+	?>
 </div>
-<h1>Search</h1>
-<div class = "form">
-	<form method="post" name = "search">
-		<input type="text" name="search-word" maxlength="30">
-		<input type="submit" name="search-submit">
-	</form>
-</div>
+
 
 <div class = "word-list">
 	<?php 

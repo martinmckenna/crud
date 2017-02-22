@@ -8,7 +8,9 @@ function print_info(){
 	$query = "SELECT * FROM words WHERE id = '".$url_id."' LIMIT 1";
 	$result = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_row($result)){
+		// echo "<div id='printed_word'>";
 		echo $row[1];
+		// echo "</div>";
 	}
 }
 
@@ -115,6 +117,31 @@ function search_word($word){
 	}
 	else{
 		echo "<div id = 'notfound'>Looks like this word doesn't exist yet, idiot<br/><a href='index.php'>Go back</a></div>";
+	}
+}
+
+function get_rows_from_table($table){
+	global $connection;
+	$query = "SELECT * FROM $table";
+	$result = mysqli_query($connection, $query);
+	return $result;
+}
+
+//makes $result an assoc array and then sticks it in the data array. Need it prevent duplicate words in the database, ya feel?
+function convert_result_to_array($result){
+	$data = [];
+	while($info=mysqli_fetch_assoc($result)){
+		$data[] = $info;
+	}
+	return $data;
+}
+
+function check_for_duplicate($input){
+	$words_array = convert_result_to_array(get_rows_from_table("words"));
+	foreach($words_array as $value){
+		if(strtolower($input) == strtolower($value["word"])){
+			return true;
+		}
 	}
 }
 
