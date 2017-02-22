@@ -33,11 +33,11 @@ h5 {
 }
 
 .entry {
-    width: 75%;
-    margin: 0 auto;
+    flex-grow: 1;
+    width: 20%;
+    margin: .5em;
     text-align: center;
     font-size: 1.5em;
-    margin-bottom: 1em;
     background-color: whitesmoke;
     -webkit-box-shadow: 0 10px 15px 0 #949494;
     box-shadow: 0 10px 15px 0 #949494;
@@ -98,4 +98,18 @@ h5 {
 
 #notfound {
     text-align: center;
+    width: 100%;
+}
+
+.word-list {
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+    /* Or do it all in one line with flex flow */
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    /* tweak the where items line up on the row */
+    /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+    -webkit-align-content: flex-end;
+    align-content: flex-end;
 }
