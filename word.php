@@ -5,9 +5,6 @@
     if(isset($_POST['delete'])){
     	delete_word();
     }
-    if(isset($_POST['submit_update'])){
-    	update_word($_POST["updated_word"]);
-    }
     ?>
     <div class = "form">
         <form method="post" name = "delete">
@@ -24,6 +21,22 @@
                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
             </button>
         </form>
+        <?php
+        if(isset($_POST['submit_update'])){
+            $trimmed = trim($_POST["updated_word"]);
+	    	if(empty($trimmed)){
+	    		echo "Please enter something!";
+	    	}
+	    else{
+	    	if(!check_for_duplicate($_POST["updated_word"])){
+	    		update_word($_POST["updated_word"]);
+	    	}
+	    	else{
+	    		echo "This word already exists!";
+	    	}
+	    }
+    }
+    ?>
     </div>
 </body>
 <?php require_once('includes/footer.php'); ?>
